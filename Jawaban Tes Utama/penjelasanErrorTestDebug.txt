@@ -1,0 +1,6 @@
+// soal nomor 8
+1. error pada line nomor 23 yaitu kurang tanda ','
+2. error pada line 429 yaitu kurang penutup doublequote "
+3. error pada line 438 yaitu tidak memiliki value pada key "valueAsString"
+4. error pada line 541 yaitu tidak memiliki index pada element cleanA yaitu diisi dengan variabel i
+5. error pada line 526 yaitu function compareDeep2 dimana var tmp Strb mengakses atribut yang tidak ada yaitu attributes yg seharusnya attribute tanpa s

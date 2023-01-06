@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Soal 3</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <p>Buatlah 1 fitur yang berupa http request ke url :
+                http://jsonplaceholder.typicode.com/posts dan cetak responsenya pada console log</p>
+            <button type="button" onclick="fetchData()">Fetch Data</button>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        const fetchData = async () => {
+            const res = await fetch('http://jsonplaceholder.typicode.com/posts');
+            const data = await res.json();
+            console.log(data);
+        }
+    </script>
+
+    <style>
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</html>

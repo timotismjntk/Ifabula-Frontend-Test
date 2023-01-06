@@ -1,0 +1,112 @@
+<!-- 
+    Buatlah satu halaman :
+    a. 1 textbox username
+    b. 1 textbox password
+    c. 1 tombol login
+    d. 1 tombol logout
+    e. 1 label “selamat datang”
+    Buatlah logic login dengan store data username dan password kedalam localStorage.
+    Pertama2 hide tombol logout dan label selamat datang. Jika sudah melakukan login
+    kemudian hide textbox username dan password beserta tombol login, munculkan label
+    selamat datang plus username yang di login dan tombol logout. Ketika logout mohon di
+    bersihkan localStoragenya.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Soal 9</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <form class="form-login" onsubmit="login()">
+                <input
+                  placeholder="Username"
+                  type="text"
+                  name="username"
+                />
+                <br />
+                <input 
+                  placeholder="Password" 
+                  type="password" 
+                  name="password" 
+                />
+                <br />
+                <button type="submit">Login</button>
+            </form>
+            <div id="welcome"></div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        window.onload = () => {
+            const isLogin = localStorage.getItem('loginInfo');
+            if (isLogin) {
+                const form = document.querySelector("form.form-login");
+                form.style.display = "none"
+                const welcomeLabel = document.getElementById('welcome')
+                welcomeLabel.innerHTML = `
+                    <p>Welcome</p>
+                    <button type="button" onclick="logout()">Logout</button>
+                `
+            }
+        }
+        const login = () => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const username = formData.get('username');
+            const password = formData.get('password');
+
+            if (username?.length > 0 && password?.length > 0) {
+                localStorage.setItem('loginInfo', JSON.stringify({username, password}));
+                alert('Login sukses!');
+                setTimeout(() => {
+                    document.location.reload();
+                }, 200)
+            } else {
+                alert('semua field harus diisi!');
+            }
+        }
+
+        const logout = () => {
+            localStorage.clear();
+            alert('Logout!');
+            setTimeout(() => {
+                document.location.reload();
+            }, 200)
+        }
+    </script>
+
+    <style>
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .form-login {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        input {
+            margin-top: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border-width: 0;
+            background: rgb(216, 215, 213);
+            color: black;
+        }
+        button {
+            margin-top: 10px;
+            width: 100%;
+            background-color: rgb(49, 55, 66);
+            color: white;
+            border-width: 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</html>

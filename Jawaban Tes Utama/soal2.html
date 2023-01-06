@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Soal 2</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <p>
+                Tampilkan 1 label dan buatlah 1 tombol yang bisa merubah value label.
+                <br>Label adalah value dari json yang sudah anda bikin di soal no 1
+            </p>
+            <label for="nama" id="nama">Mark Zuckerberg</label>
+            <button type="button" onclick="ubahNama()">Ubah Nama</button>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        // import data from './soal1.js' // akan error apabila akses secara local
+        const data = [
+            {
+                "nama": "Timotius Simanjuntak",
+                "umur": 24,
+                "alamat": "indonesia"
+            }
+        ] // ini struktur nya sama dengan file soal1.js
+        const ubahNama = () => {
+            const previousName = 'Mark Zuckerberg';
+            if (document.getElementById('nama').innerText === previousName) {
+                document.getElementById('nama').innerText = data[0].nama; 
+            } else {
+                document.getElementById('nama').innerText = previousName; 
+            }
+        }
+    </script>
+
+    <style>
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</html>

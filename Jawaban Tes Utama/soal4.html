@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Soal 4</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <p>Buatlah 1 html dengan mencetak hasil response dari soal no 3 ke dalam bentuk table.
+                Tampilkan maksimal 10 data.
+                </p>
+            <button type="button" onclick="fetchData()">Fetch Data</button>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Body</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dataTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        const fetchData = async () => {
+            const res = await fetch('http://jsonplaceholder.typicode.com/posts');
+            const data = (await res.json())?.slice?.(0, 10);
+            console.log(data);
+            let tbody = document.querySelector("#dataTable");
+            let output = "";
+            for (let {body, title} of data){
+                output += `
+                    <tr>
+                        <td>${body}</td>
+                        <td>${title}</td>
+                    </tr>  
+                `
+            }
+            tbody.innerHTML = output;
+        }
+    </script>
+
+    <style>
+        .container {
+            margin:0 auto;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table {
+            margin:0 auto;
+            margin-top: 20px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        button {
+            margin-left: 10px;
+        }
+        table {
+            border:1px solid #C0C0C0;
+            border-collapse:collapse;
+            padding:5px;
+            margin-top: 10px;
+            width: 50%;
+        }
+        th {
+            border:1px solid #C0C0C0;
+            padding:5px;
+            background:#F0F0F0;
+        }
+        td {
+            border:1px solid #C0C0C0;
+        }
+    </style>
+</html>
